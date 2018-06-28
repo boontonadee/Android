@@ -13,6 +13,14 @@ import com.example.ajboonto.srrufriend.R;
 public class Mainfragment extends Fragment{
 
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+// Register Controller
+
+    } //Main Method
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
