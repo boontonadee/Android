@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.ajboonto.srrufriend.MainActivity;
 import com.example.ajboonto.srrufriend.R;
+
+import it.sauronsoftware.ftp4j.FTPDataTransferListener;
 
 public class Registerfragment extends Fragment{
     private ImageView imageView;
@@ -62,6 +65,36 @@ public class Registerfragment extends Fragment{
         return super.onOptionsItemSelected(item);
     }  // Upload
 
+    public class MyuploadAvata implements FTPDataTransferListener{
+        @Override
+        public void started() {
+            alertMessage("Start Uplad Avata");
+        }
+
+        @Override
+        public void transferred(int i) {
+            alertMessage("Continue Upload Avata");
+
+        }
+
+        @Override
+        public void completed() {
+            alertMessage("Success Uplad Avata");
+
+        }
+
+        @Override
+        public void aborted() {
+
+        }
+
+        @Override
+        public void failed() {
+
+        }
+    }
+
+
 
     private void uploadValueToServer() {
         EditText nameeditText = getView().findViewById(R.id.edtName);
@@ -77,6 +110,11 @@ public class Registerfragment extends Fragment{
         } else if (nameString.isEmpty() ||userString.isEmpty() || passwordString.isEmpty()) {
             alertMessage("Pleease Fill All Blank");
         } else {
+//            upload Image Avata
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy
+                    .Builder().permitAll().build();
+            StrictMode.setThreadPolicy(policy);
+
 
         }
     }
